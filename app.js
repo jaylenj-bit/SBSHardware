@@ -1,33 +1,33 @@
-/* =========================
-   FORGE HARDWARE — JS
-   Animations + 3D tilt + canvas pseudo-3D
-   ========================= */
-
-/* ---------- Helpers ---------- */
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-/* ---------- Preloader ---------- */
+/* ===== Preloader ===== */
 window.addEventListener("load", () => {
-  const preloader = $("#preloader");
-  // Small delay so the loader feels intentional
-  setTimeout(() => preloader.classList.add("hidden"), 650);
+  const pre = $("#preloader");
+  setTimeout(() => pre.classList.add("hidden"), 650);
 });
 
-/* ---------- Header shrink on scroll ---------- */
+/* ===== Header behavior ===== */
 const header = $("#siteHeader");
 let lastY = 0;
 window.addEventListener("scroll", () => {
   const y = window.scrollY || 0;
   header.classList.toggle("shrink", y > 16);
 
-  // Subtle hide/show as you scroll (feels premium)
+  // subtle hide/show
   if (y > lastY && y > 140) header.style.transform = "translateY(-8px)";
   else header.style.transform = "translateY(0)";
   lastY = y;
+
+  // cube speed shift
+  const cube = $("#cube");
+  if (cube) {
+    const seconds = Math.max(5.5, 10 - y / 650);
+    cube.style.animationDuration = `${seconds}s`;
+  }
 });
 
-/* ---------- Mobile nav ---------- */
+/* ===== Mobile nav ===== */
 const navToggle = $("#navToggle");
 const navDrawer = $("#navDrawer");
 navToggle?.addEventListener("click", () => {
@@ -40,7 +40,7 @@ $$(".nav-drawer a").forEach(a => a.addEventListener("click", () => {
   navDrawer.setAttribute("aria-hidden", "true");
 }));
 
-/* ---------- Cursor glow follow ---------- */
+/* ===== Cursor glow ===== */
 const cursorGlow = $("#cursorGlow");
 window.addEventListener("pointermove", (e) => {
   if (!cursorGlow) return;
@@ -48,17 +48,16 @@ window.addEventListener("pointermove", (e) => {
   cursorGlow.style.top = `${e.clientY}px`;
 });
 
-/* ---------- Reveal on scroll (IntersectionObserver) ---------- */
+/* ===== Reveal on scroll ===== */
 const reveals = $$(".reveal");
 const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) entry.target.classList.add("in");
   });
 }, { threshold: 0.12 });
-
 reveals.forEach(el => io.observe(el));
 
-/* ---------- Count-up stats (when visible) ---------- */
+/* ===== Count-up stats ===== */
 const statNums = $$(".stat__num");
 let statsFired = false;
 
@@ -69,15 +68,13 @@ function animateCount(el, target) {
 
   function tick(t) {
     const p = Math.min(1, (t - start) / duration);
-    const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-    const val = (0 + (target - 0) * eased);
-
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = (target * eased);
     el.textContent = isFloat ? val.toFixed(1) : Math.round(val).toString();
     if (p < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 }
-
 const statsObserver = new IntersectionObserver((entries) => {
   const anyVisible = entries.some(e => e.isIntersecting);
   if (anyVisible && !statsFired) {
@@ -85,21 +82,21 @@ const statsObserver = new IntersectionObserver((entries) => {
     statNums.forEach(el => animateCount(el, Number(el.dataset.count || "0")));
   }
 }, { threshold: 0.4 });
-
 statNums.forEach(el => statsObserver.observe(el));
 
-/* ---------- 3D Tilt on product cards ---------- */
-const tiltCards = $$(".tilt");
-
-tiltCards.forEach(card => {
+/* ===== 3D tilt on cards ===== */
+$$(".tilt").forEach(card => {
   let rect;
 
-  const onEnter = () => { rect = card.getBoundingClientRect(); };
-  const onLeave = () => {
-    card.style.transform = `translateY(0) rotateX(0) rotateY(0)`;
-  };
+  card.addEventListener("pointerenter", () => {
+    rect = card.getBoundingClientRect();
+  });
 
-  const onMove = (e) => {
+  card.addEventListener("pointerleave", () => {
+    card.style.transform = `translateY(0) rotateX(0) rotateY(0)`;
+  });
+
+  card.addEventListener("pointermove", (e) => {
     if (!rect) rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -107,88 +104,114 @@ tiltCards.forEach(card => {
     const px = (x / rect.width) - 0.5;
     const py = (y / rect.height) - 0.5;
 
-    const max = 10; // degrees
+    const max = 10;
     const rotY = px * max;
     const rotX = -py * max;
 
-    card.style.transform =
-      `translateY(-2px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-  };
-
-  card.addEventListener("pointerenter", onEnter);
-  card.addEventListener("pointerleave", onLeave);
-  card.addEventListener("pointermove", onMove);
-});
-
-/* ---------- Cube speed changes on scroll (fun 3D touch) ---------- */
-const cube = $("#cube");
-window.addEventListener("scroll", () => {
-  if (!cube) return;
-  const y = window.scrollY || 0;
-  // Speed up slightly as you scroll down
-  const seconds = Math.max(5.5, 10 - y / 600);
-  cube.style.animationDuration = `${seconds}s`;
-});
-
-/* ---------- Compatibility checker (mock) ---------- */
-const budgetRange = $("#budgetRange");
-const budgetLabel = $("#budgetLabel");
-budgetRange?.addEventListener("input", () => {
-  budgetLabel.textContent = `$${budgetRange.value}`;
-});
-
-$("#mockCheckBtn")?.addEventListener("click", () => {
-  const platform = $("#platformSelect")?.value || "Desktop";
-  const goal = $("#goalSelect")?.value || "Gaming";
-  const budget = Number(budgetRange?.value || 900);
-
-  const rec =
-    budget < 500 ? "Starter kit + upgrade path" :
-    budget < 1100 ? "Balanced build + efficient cooling" :
-    budget < 1800 ? "High performance + quiet airflow" :
-    "Enthusiast tier + premium reliability";
-
-  $("#mockResult").textContent =
-    `Result: ${platform} • ${goal} • Budget $${budget} → ${rec}.`;
-});
-
-/* ---------- FAQ accordion ---------- */
-$$(".faq__q").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-    btn.setAttribute("aria-expanded", String(!expanded));
-
-    const ans = btn.nextElementSibling;
-    if (!ans) return;
-
-    if (!expanded) {
-      ans.classList.add("open");
-      ans.style.maxHeight = ans.scrollHeight + "px";
-    } else {
-      ans.style.maxHeight = "0px";
-      ans.classList.remove("open");
-    }
+    card.style.transform = `translateY(-2px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
   });
 });
 
-/* ---------- Contact form fake submit ---------- */
-const form = $("#contactForm");
-const formNote = $("#formNote");
-form?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  formNote.textContent = "Sent! (Template mode) — connect to a backend to make this real.";
-  form.reset();
-  setTimeout(() => formNote.textContent = "", 3200);
+/* ===== Deals filtering + cart ===== */
+const filterBtns = $$(".filter-btn");
+const dealCards = $$("#dealGrid .deal-card");
+
+function setFilter(cat){
+  filterBtns.forEach(b => b.classList.toggle("is-active", b.dataset.filter === cat));
+  dealCards.forEach(card => {
+    const ok = (cat === "all") || (card.dataset.cat === cat);
+    // animate out/in without removing from layout
+    if (!ok){
+      card.style.pointerEvents = "none";
+      card.style.opacity = "0";
+      card.style.transform = "translateY(14px) scale(.98)";
+      card.style.filter = "blur(6px)";
+      setTimeout(() => card.style.display = "none", 180);
+    } else {
+      card.style.display = "block";
+      requestAnimationFrame(() => {
+        card.style.pointerEvents = "auto";
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0) scale(1)";
+        card.style.filter = "blur(0)";
+      });
+    }
+  });
+}
+
+filterBtns.forEach(btn => {
+  btn.addEventListener("click", () => setFilter(btn.dataset.filter));
 });
 
-/* ---------- Footer year + Back to top ---------- */
+// cart mock
+let cartCount = 0;
+let cartTotal = 0;
+
+const cartCountEl = $("#cartCount");
+const cartTotalEl = $("#cartTotal");
+const cartNote = $("#cartNote");
+
+function popNote(msg){
+  cartNote.textContent = msg;
+  setTimeout(() => cartNote.textContent = "", 2600);
+}
+
+$$(".add-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const card = btn.closest(".deal-card");
+    const price = Number(card?.dataset.price || "0");
+
+    cartCount += 1;
+    cartTotal += price;
+
+    cartCountEl.textContent = String(cartCount);
+    cartTotalEl.textContent = `$${cartTotal}`;
+
+    // micro animation
+    btn.animate([
+      { transform: "translateY(0) scale(1)" },
+      { transform: "translateY(-4px) scale(1.08)" },
+      { transform: "translateY(0) scale(1)" }
+    ], { duration: 260, easing: "cubic-bezier(.2,.9,.2,1)" });
+
+    popNote("Added to cart (mock).");
+  });
+});
+
+$("#clearCart")?.addEventListener("click", () => {
+  cartCount = 0;
+  cartTotal = 0;
+  cartCountEl.textContent = "0";
+  cartTotalEl.textContent = "$0";
+  popNote("Cart cleared.");
+});
+
+/* ===== Contact form fake submit ===== */
+$("#contactForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  $("#formNote").textContent = "Message sent! (Template mode — connect to a backend to make it real.)";
+  e.target.reset();
+  setTimeout(() => $("#formNote").textContent = "", 3200);
+});
+
+/* ===== Beacon pulse animation (extra fun) ===== */
+$("#pulseBtn")?.addEventListener("click", () => {
+  const note = $("#pulseNote");
+  note.textContent = "Beacon pinged… aisle lights blinking ✨";
+  note.animate(
+    [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }],
+    { duration: 260, easing: "cubic-bezier(.2,.9,.2,1)" }
+  );
+  setTimeout(() => note.textContent = "", 2600);
+});
+
+/* ===== Footer year + top ===== */
 $("#year").textContent = new Date().getFullYear().toString();
 $("#toTop")?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
 /* ======================================================
-   Canvas pseudo-3D effect
-   - A simple particle grid that uses a fake "z depth"
-   - Looks 3D-ish without needing Three.js
+   Canvas pseudo-3D background (hardware store vibe)
+   - Warm/teal dots connected like a "store map grid"
    ====================================================== */
 const canvas = $("#fxCanvas");
 const ctx = canvas?.getContext("2d");
@@ -209,17 +232,14 @@ window.addEventListener("resize", resize);
 
 function initParticles() {
   particles = [];
-  // density scales with screen size
-  const count = Math.floor((window.innerWidth * window.innerHeight) / 28000);
-
+  const count = Math.floor((window.innerWidth * window.innerHeight) / 30000);
   for (let i = 0; i < count; i++) {
     particles.push({
-      // world coords centered around 0
       x: (Math.random() * 2 - 1) * 1.2,
       y: (Math.random() * 2 - 1) * 1.2,
-      z: Math.random(),             // 0..1 depth
-      s: 0.5 + Math.random() * 1.8, // size
-      p: Math.random() * Math.PI * 2 // phase
+      z: Math.random(),
+      s: 0.5 + Math.random() * 1.8,
+      p: Math.random() * Math.PI * 2
     });
   }
 }
@@ -229,11 +249,8 @@ function draw(now) {
   const dt = (now - t0) / 1000;
   t0 = now;
 
-  // clear
   ctx.clearRect(0, 0, W, H);
 
-  // slight motion based on pointer (adds depth feeling)
-  // we’ll read cursorGlow position if available:
   let px = 0, py = 0;
   if (cursorGlow) {
     const cx = parseFloat(cursorGlow.style.left || "0");
@@ -242,33 +259,23 @@ function draw(now) {
     py = (cy / window.innerHeight - 0.5) * 2;
   }
 
-  // camera-like params
   const centerX = W * 0.5;
   const centerY = H * 0.5;
   const scale = Math.min(W, H) * 0.38;
 
-  // draw connecting lines between close particles (feels like a 3D net)
-  // project particles first
   const projected = particles.map((pt) => {
-    // animate depth wave
     pt.p += dt * (0.8 + pt.z);
     const wobble = Math.sin(pt.p) * 0.03;
 
-    // fake 3D: bring closer particles larger + slightly offset with cursor
     const z = 0.15 + pt.z * 0.85;
     const inv = 1 / (z + 0.25);
     const x = (pt.x + wobble + px * 0.05) * inv;
     const y = (pt.y + wobble + py * 0.05) * inv;
 
-    return {
-      sx: centerX + x * scale,
-      sy: centerY + y * scale,
-      z,
-      r: pt.s * inv * DPR
-    };
+    return { sx: centerX + x * scale, sy: centerY + y * scale, z, r: pt.s * inv * DPR };
   });
 
-  // lines
+  // lines (teal)
   for (let i = 0; i < projected.length; i++) {
     for (let j = i + 1; j < projected.length; j++) {
       const a = projected[i], b = projected[j];
@@ -277,8 +284,8 @@ function draw(now) {
       const d2 = dx*dx + dy*dy;
       const maxD = (160 * DPR) ** 2;
       if (d2 < maxD) {
-        const alpha = (1 - d2 / maxD) * 0.18;
-        ctx.strokeStyle = `rgba(0,229,255,${alpha})`;
+        const alpha = (1 - d2 / maxD) * 0.16;
+        ctx.strokeStyle = `rgba(0,224,198,${alpha})`;
         ctx.lineWidth = 1 * DPR;
         ctx.beginPath();
         ctx.moveTo(a.sx, a.sy);
@@ -288,15 +295,15 @@ function draw(now) {
     }
   }
 
-  // dots
+  // dots (amber + pink accent)
   for (const p of projected) {
-    const alpha = 0.10 + (1 - p.z) * 0.25;
-    ctx.fillStyle = `rgba(124,92,255,${alpha})`;
+    const alpha = 0.08 + (1 - p.z) * 0.22;
+    ctx.fillStyle = `rgba(255,176,0,${alpha})`;
     ctx.beginPath();
     ctx.arc(p.sx, p.sy, Math.max(0.9 * DPR, p.r), 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = `rgba(255,79,216,${alpha * 0.55})`;
+    ctx.fillStyle = `rgba(255,78,126,${alpha * 0.45})`;
     ctx.beginPath();
     ctx.arc(p.sx + 1.2 * DPR, p.sy + 0.8 * DPR, Math.max(0.7 * DPR, p.r * 0.7), 0, Math.PI * 2);
     ctx.fill();
