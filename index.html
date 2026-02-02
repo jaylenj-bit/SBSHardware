@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forge Hardware — Pro-Grade Parts</title>
+  <meta name="description" content="A modern hardware store website with heavy animations, 3D effects, and smooth scrolling." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ====== Preloader ====== -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__ring"></div>
+    <p class="preloader__text">Forging your experience…</p>
+  </div>
+
+  <!-- ====== Background FX (Canvas pseudo-3D) ====== -->
+  <canvas id="fxCanvas" class="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- ====== Cursor Glow ====== -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ====== Header / Nav ====== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Forge Hardware Home">
+        <span class="brand__mark" aria-hidden="true">⛭</span>
+        <span class="brand__text">Forge Hardware</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#products">Products</a>
+        <a href="#features">Features</a>
+        <a href="#builds">Build Guides</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn--small" href="#contact">Get a Quote</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+      <a href="#products">Products</a>
+      <a href="#features">Features</a>
+      <a href="#builds">Build Guides</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn">Get a Quote</a>
+    </div>
+  </header>
+
+  <!-- ====== Hero ====== -->
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="pill reveal">⚡ Built for speed. Tuned for durability.</p>
+          <h1 class="hero__title reveal">
+            Hardware that feels <span class="gradient-text">future-proof</span>.
+          </h1>
+          <p class="hero__subtitle reveal">
+            Shop pro-grade components, tools, and kits — with clean specs, fast checkout,
+            and build guides that actually help.
+          </p>
+
+          <div class="hero__cta reveal">
+            <a class="btn" href="#products">Browse Products</a>
+            <a class="btn btn--ghost" href="#builds">See Build Guides</a>
+          </div>
+
+          <div class="hero__stats">
+            <div class="stat reveal">
+              <div class="stat__num" data-count="1280">0</div>
+              <div class="stat__label">Items in Stock</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat__num" data-count="36">0</div>
+              <div class="stat__label">Hour Delivery (select)</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat__num" data-count="4.9">0</div>
+              <div class="stat__label">Avg Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Showcase -->
+        <div class="hero__showcase">
+          <div class="floating-card reveal">
+            <div class="floating-card__header">
+              <span class="dot dot--green"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--red"></span>
+              <span class="floating-card__title">Live Spec Preview</span>
+            </div>
+            <div class="floating-card__body">
+              <div class="spec">
+                <span>Series</span><strong>Forge X</strong>
+              </div>
+              <div class="spec">
+                <span>Warranty</span><strong>3 Years</strong>
+              </div>
+              <div class="spec">
+                <span>Noise</span><strong>Ultra-low</strong>
+              </div>
+              <div class="spec">
+                <span>Cooling</span><strong>Hybrid</strong>
+              </div>
+              <p class="fineprint">Tip: Hover the products below for 3D tilt.</p>
+            </div>
+          </div>
+
+          <!-- CSS 3D cube -->
+          <div class="cube-wrap reveal" aria-hidden="true">
+            <div class="cube" id="cube">
+              <div class="cube__face cube__face--front">GPU</div>
+              <div class="cube__face cube__face--back">CPU</div>
+              <div class="cube__face cube__face--right">SSD</div>
+              <div class="cube__face cube__face--left">RAM</div>
+              <div class="cube__face cube__face--top">PSU</div>
+              <div class="cube__face cube__face--bottom">COOL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Precision Tools</span><span>PC Parts</span><span>IoT Kits</span><span>Workbench Gear</span>
+          <span>Precision Tools</span><span>PC Parts</span><span>IoT Kits</span><span>Workbench Gear</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Products ====== -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="reveal">Popular Hardware</h2>
+          <p class="reveal">Fast picks for builders, tinkerers, and pros.</p>
+        </div>
+
+        <div class="grid products">
+          <article class="card tilt reveal">
+            <div class="card__badge">Best Seller</div>
+            <h3>ForgeFlow Cooling Kit</h3>
+            <p>Quiet hybrid cooling with smart curve presets.</p>
+            <ul class="bullets">
+              <li>Auto fan tuning</li>
+              <li>Low-profile radiator</li>
+              <li>ARGB ready</li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">$149</span>
+              <button class="icon-btn" aria-label="Add Cooling Kit">＋</button>
+            </div>
+          </article>
+
+          <article class="card tilt reveal">
+            <div class="card__badge">New</div>
+            <h3>TitanCore Modular PSU</h3>
+            <p>Stable power delivery with braided modular cables.</p>
+            <ul class="bullets">
+              <li>80+ Gold</li>
+              <li>Silent mode</li>
+              <li>5-year warranty</li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">$129</span>
+              <button class="icon-btn" aria-label="Add PSU">＋</button>
+            </div>
+          </article>
+
+          <article class="card tilt reveal">
+            <div class="card__badge">Pro</div>
+            <h3>EdgeDrive NVMe SSD</h3>
+            <p>Ridiculous read speeds for creators and gamers.</p>
+            <ul class="bullets">
+              <li>Heatsink included</li>
+              <li>Gen4 support</li>
+              <li>Encryption</li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">$99</span>
+              <button class="icon-btn" aria-label="Add SSD">＋</button>
+            </div>
+          </article>
+
+          <article class="card tilt reveal">
+            <div class="card__badge">Bundle</div>
+            <h3>IoT Starter Lab</h3>
+            <p>Sensors, microcontroller, wires, and quick labs.</p>
+            <ul class="bullets">
+              <li>Beginner friendly</li>
+              <li>Mini projects</li>
+              <li>Reusable parts</li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">$79</span>
+              <button class="icon-btn" aria-label="Add IoT Kit">＋</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Features ====== -->
+    <section class="section section--alt" id="features">
+      <div class="container">
+        <div class="split">
+          <div>
+            <h2 class="reveal">Designed for builders</h2>
+            <p class="reveal">
+              Smooth UI motion, crisp specs, and confident ordering.
+              Everything here is intentionally “hardware-store meets sci-fi”.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature reveal">
+                <h3>Scroll-trigger reveals</h3>
+                <p>Cards animate in only when you reach them.</p>
+              </div>
+              <div class="feature reveal">
+                <h3>3D tilt + depth</h3>
+                <p>Hover products for perspective and lighting shifts.</p>
+              </div>
+              <div class="feature reveal">
+                <h3>Canvas FX layer</h3>
+                <p>Background “space-grid” uses pseudo-3D particles.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <h3 class="panel__title">Build Compatibility Checker (Mock)</h3>
+            <div class="panel__row">
+              <label>Platform</label>
+              <select id="platformSelect">
+                <option>Desktop</option>
+                <option>Laptop</option>
+                <option>IoT / Embedded</option>
+              </select>
+            </div>
+            <div class="panel__row">
+              <label>Budget</label>
+              <input id="budgetRange" type="range" min="200" max="2500" value="900"/>
+              <span id="budgetLabel" class="chip">$900</span>
+            </div>
+            <div class="panel__row">
+              <label>Goal</label>
+              <select id="goalSelect">
+                <option>Gaming</option>
+                <option>Editing</option>
+                <option>Office</option>
+                <option>Lab / Learning</option>
+              </select>
+            </div>
+            <button class="btn btn--ghost" id="mockCheckBtn">Run Check</button>
+            <p class="panel__note" id="mockResult" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Build Guides ====== -->
+    <section class="section" id="builds">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="reveal">Build Guides</h2>
+          <p class="reveal">Quick paths from parts to performance.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="step reveal">
+            <div class="step__num">01</div>
+            <div class="step__body">
+              <h3>Pick a platform</h3>
+              <p>Desktop, embedded, or toolbench setup — choose your base.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">02</div>
+            <div class="step__body">
+              <h3>Balance power & cooling</h3>
+              <p>Match heat output to airflow and cooling capacity.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">03</div>
+            <div class="step__body">
+              <h3>Optimize storage & reliability</h3>
+              <p>Fast storage is nice — consistent storage is better.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== FAQ ====== -->
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="reveal">FAQ</h2>
+          <p class="reveal">Tap to expand (animated accordion).</p>
+        </div>
+
+        <div class="faq">
+          <button class="faq__q reveal" aria-expanded="false">
+            Do you ship internationally?
+            <span class="faq__icon" aria-hidden="true">⌄</span>
+          </button>
+          <div class="faq__a" role="region">
+            Yes — international shipping is available for most items. Rates depend on region and weight.
+          </div>
+
+          <button class="faq__q reveal" aria-expanded="false">
+            Are these prices real?
+            <span class="faq__icon" aria-hidden="true">⌄</span>
+          </button>
+          <div class="faq__a" role="region">
+            This is a template site — pricing is placeholder. Swap in your real catalog later.
+          </div>
+
+          <button class="faq__q reveal" aria-expanded="false">
+            Can this become a real store?
+            <span class="faq__icon" aria-hidden="true">⌄</span>
+          </button>
+          <div class="faq__a" role="region">
+            Absolutely. You can connect it to Shopify, Stripe, or a custom backend. The UI is ready.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Contact ====== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <h2 class="reveal">Get a Quote</h2>
+            <p class="reveal">Tell us what you’re building and we’ll recommend a clean parts list.</p>
+            <div class="contact__chips reveal">
+              <span class="chip">Bulk Orders</span>
+              <span class="chip">Campus Labs</span>
+              <span class="chip">Custom Builds</span>
+              <span class="chip">B2B</span>
+            </div>
+          </div>
+
+          <form class="form reveal" id="contactForm">
+            <label>
+              Name
+              <input required type="text" placeholder="Your name" />
+            </label>
+            <label>
+              Email
+              <input required type="email" placeholder="you@email.com" />
+            </label>
+            <label>
+              What do you need?
+              <textarea required rows="4" placeholder="Example: Budget gaming PC parts list + quiet cooling"></textarea>
+            </label>
+            <button class="btn" type="submit">Send</button>
+            <p class="form__note" id="formNote" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== Footer ====== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true">⛭</span>
+          <span class="brand__text">Forge Hardware</span>
+        </div>
+        <p class="muted">A motion-heavy hardware website template (HTML/CSS/JS).</p>
+      </div>
+      <div class="footer__links">
+        <a href="#products">Products</a>
+        <a href="#features">Features</a>
+        <a href="#builds">Build Guides</a>
+        <a href="#contact">Quote</a>
+      </div>
+      <div class="footer__meta">
+        <p class="muted">© <span id="year"></span> Forge Hardware</p>
+        <button class="btn btn--ghost btn--small" id="toTop">Back to top ↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
