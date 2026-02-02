@@ -3,38 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Forge Hardware — Pro-Grade Parts</title>
-  <meta name="description" content="A modern hardware store website with heavy animations, 3D effects, and smooth scrolling." />
+  <title>Hammer & Hearth — Home Hardware</title>
+  <meta name="description" content="A home hardware store website with lots of animations and 3D effects." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- ====== Preloader ====== -->
+  <!-- ===== Preloader ===== -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__ring"></div>
-    <p class="preloader__text">Forging your experience…</p>
+    <p class="preloader__text">Stocking the aisles…</p>
   </div>
 
-  <!-- ====== Background FX (Canvas pseudo-3D) ====== -->
+  <!-- ===== FX Layer ===== -->
   <canvas id="fxCanvas" class="fx-canvas" aria-hidden="true"></canvas>
-
-  <!-- ====== Cursor Glow ====== -->
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  <!-- ====== Header / Nav ====== -->
+  <!-- ===== Header ===== -->
   <header class="site-header" id="siteHeader">
     <div class="container header__inner">
-      <a class="brand" href="#top" aria-label="Forge Hardware Home">
-        <span class="brand__mark" aria-hidden="true">⛭</span>
-        <span class="brand__text">Forge Hardware</span>
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand__mark" aria-hidden="true">🛠️</span>
+        <span class="brand__text">Hammer & Hearth</span>
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#products">Products</a>
-        <a href="#features">Features</a>
-        <a href="#builds">Build Guides</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn btn--small" href="#contact">Get a Quote</a>
+        <a href="#departments">Departments</a>
+        <a href="#deals">Deals</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Project Ideas</a>
+        <a class="btn btn--small" href="#contact">Contact</a>
       </nav>
 
       <button class="nav__toggle" id="navToggle" aria-label="Open menu">
@@ -43,84 +41,84 @@
     </div>
 
     <div class="nav-drawer" id="navDrawer" aria-hidden="true">
-      <a href="#products">Products</a>
-      <a href="#features">Features</a>
-      <a href="#builds">Build Guides</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact" class="btn">Get a Quote</a>
+      <a href="#departments">Departments</a>
+      <a href="#deals">Deals</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Project Ideas</a>
+      <a href="#contact" class="btn">Contact</a>
     </div>
   </header>
 
-  <!-- ====== Hero ====== -->
   <main id="top">
+    <!-- ===== Hero ===== -->
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__copy">
-          <p class="pill reveal">⚡ Built for speed. Tuned for durability.</p>
+          <p class="pill reveal">🏠 Fix it. Build it. Upgrade it.</p>
           <h1 class="hero__title reveal">
-            Hardware that feels <span class="gradient-text">future-proof</span>.
+            Your neighborhood <span class="gradient-text">home hardware</span> — with big-store selection.
           </h1>
           <p class="hero__subtitle reveal">
-            Shop pro-grade components, tools, and kits — with clean specs, fast checkout,
-            and build guides that actually help.
+            Tools, paint, plumbing, electrical, lawn & garden, and the little parts that finish the job.
+            Fast pickup. Helpful staff. Real project guidance.
           </p>
 
           <div class="hero__cta reveal">
-            <a class="btn" href="#products">Browse Products</a>
-            <a class="btn btn--ghost" href="#builds">See Build Guides</a>
+            <a class="btn" href="#departments">Shop Departments</a>
+            <a class="btn btn--ghost" href="#projects">DIY Projects</a>
           </div>
 
           <div class="hero__stats">
             <div class="stat reveal">
-              <div class="stat__num" data-count="1280">0</div>
-              <div class="stat__label">Items in Stock</div>
+              <div class="stat__num" data-count="24000">0</div>
+              <div class="stat__label">Items in Store</div>
             </div>
             <div class="stat reveal">
-              <div class="stat__num" data-count="36">0</div>
-              <div class="stat__label">Hour Delivery (select)</div>
+              <div class="stat__num" data-count="15">0</div>
+              <div class="stat__label">Minute Curbside</div>
             </div>
             <div class="stat reveal">
-              <div class="stat__num" data-count="4.9">0</div>
-              <div class="stat__label">Avg Rating</div>
+              <div class="stat__num" data-count="4.8">0</div>
+              <div class="stat__label">Local Reviews</div>
             </div>
           </div>
         </div>
 
-        <!-- 3D Showcase -->
+        <!-- ===== 3D Showcase ===== -->
         <div class="hero__showcase">
           <div class="floating-card reveal">
             <div class="floating-card__header">
               <span class="dot dot--green"></span>
               <span class="dot dot--yellow"></span>
               <span class="dot dot--red"></span>
-              <span class="floating-card__title">Live Spec Preview</span>
+              <span class="floating-card__title">Today’s Store Board</span>
             </div>
             <div class="floating-card__body">
               <div class="spec">
-                <span>Series</span><strong>Forge X</strong>
+                <span>Paint Match</span><strong>In-store</strong>
               </div>
               <div class="spec">
-                <span>Warranty</span><strong>3 Years</strong>
+                <span>Key Cutting</span><strong>Fast</strong>
               </div>
               <div class="spec">
-                <span>Noise</span><strong>Ultra-low</strong>
+                <span>Tool Rental</span><strong>Daily</strong>
               </div>
               <div class="spec">
-                <span>Cooling</span><strong>Hybrid</strong>
+                <span>Bulk Screws</span><strong>Wall Aisle 7</strong>
               </div>
-              <p class="fineprint">Tip: Hover the products below for 3D tilt.</p>
+              <p class="fineprint">Hover cards for 3D tilt + light sweep.</p>
             </div>
           </div>
 
-          <!-- CSS 3D cube -->
+          <!-- CSS 3D Rotating Toolbox -->
           <div class="cube-wrap reveal" aria-hidden="true">
             <div class="cube" id="cube">
-              <div class="cube__face cube__face--front">GPU</div>
-              <div class="cube__face cube__face--back">CPU</div>
-              <div class="cube__face cube__face--right">SSD</div>
-              <div class="cube__face cube__face--left">RAM</div>
-              <div class="cube__face cube__face--top">PSU</div>
-              <div class="cube__face cube__face--bottom">COOL</div>
+              <div class="cube__face cube__face--front">TOOLS</div>
+              <div class="cube__face cube__face--back">PAINT</div>
+              <div class="cube__face cube__face--right">PLUMB</div>
+              <div class="cube__face cube__face--left">ELEC</div>
+              <div class="cube__face cube__face--top">GARDEN</div>
+              <div class="cube__face cube__face--bottom">FASTEN</div>
             </div>
           </div>
         </div>
@@ -129,224 +127,308 @@
       <!-- marquee -->
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track">
-          <span>Precision Tools</span><span>PC Parts</span><span>IoT Kits</span><span>Workbench Gear</span>
-          <span>Precision Tools</span><span>PC Parts</span><span>IoT Kits</span><span>Workbench Gear</span>
+          <span>Hand Tools</span><span>Power Tools</span><span>Paint</span><span>Plumbing</span><span>Electrical</span><span>Lawn & Garden</span><span>Hardware</span>
+          <span>Hand Tools</span><span>Power Tools</span><span>Paint</span><span>Plumbing</span><span>Electrical</span><span>Lawn & Garden</span><span>Hardware</span>
         </div>
       </div>
     </section>
 
-    <!-- ====== Products ====== -->
-    <section class="section" id="products">
+    <!-- ===== Departments ===== -->
+    <section class="section" id="departments">
       <div class="container">
         <div class="section__head">
-          <h2 class="reveal">Popular Hardware</h2>
-          <p class="reveal">Fast picks for builders, tinkerers, and pros.</p>
+          <h2 class="reveal">Shop Departments</h2>
+          <p class="reveal">Everything you need for repairs, upgrades, and weekend projects.</p>
         </div>
 
-        <div class="grid products">
+        <div class="grid departments">
           <article class="card tilt reveal">
-            <div class="card__badge">Best Seller</div>
-            <h3>ForgeFlow Cooling Kit</h3>
-            <p>Quiet hybrid cooling with smart curve presets.</p>
+            <div class="card__badge">Popular</div>
+            <h3>Tools</h3>
+            <p>Hand tools, power tools, bits, blades, storage.</p>
             <ul class="bullets">
-              <li>Auto fan tuning</li>
-              <li>Low-profile radiator</li>
-              <li>ARGB ready</li>
+              <li>Drills & drivers</li>
+              <li>Wrenches & sockets</li>
+              <li>Safety gear</li>
             </ul>
             <div class="card__foot">
-              <span class="price">$149</span>
-              <button class="icon-btn" aria-label="Add Cooling Kit">＋</button>
+              <span class="price">Start $9</span>
+              <button class="icon-btn" aria-label="Explore Tools">→</button>
             </div>
           </article>
 
           <article class="card tilt reveal">
             <div class="card__badge">New</div>
-            <h3>TitanCore Modular PSU</h3>
-            <p>Stable power delivery with braided modular cables.</p>
+            <h3>Paint & Supplies</h3>
+            <p>Interior/exterior paint, rollers, tape, stain.</p>
             <ul class="bullets">
-              <li>80+ Gold</li>
-              <li>Silent mode</li>
-              <li>5-year warranty</li>
+              <li>Color match</li>
+              <li>Primer & caulk</li>
+              <li>Brush kits</li>
             </ul>
             <div class="card__foot">
-              <span class="price">$129</span>
-              <button class="icon-btn" aria-label="Add PSU">＋</button>
+              <span class="price">Start $6</span>
+              <button class="icon-btn" aria-label="Explore Paint">→</button>
+            </div>
+          </article>
+
+          <article class="card tilt reveal">
+            <div class="card__badge">Essential</div>
+            <h3>Plumbing</h3>
+            <p>PVC, fittings, faucets, sealants, drains.</p>
+            <ul class="bullets">
+              <li>Leak repair</li>
+              <li>Supply lines</li>
+              <li>Pipe tools</li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">Start $3</span>
+              <button class="icon-btn" aria-label="Explore Plumbing">→</button>
             </div>
           </article>
 
           <article class="card tilt reveal">
             <div class="card__badge">Pro</div>
-            <h3>EdgeDrive NVMe SSD</h3>
-            <p>Ridiculous read speeds for creators and gamers.</p>
+            <h3>Electrical</h3>
+            <p>Switches, outlets, wire, lighting, testers.</p>
             <ul class="bullets">
-              <li>Heatsink included</li>
-              <li>Gen4 support</li>
-              <li>Encryption</li>
+              <li>Smart switches</li>
+              <li>Extension cords</li>
+              <li>Safety-rated</li>
             </ul>
             <div class="card__foot">
-              <span class="price">$99</span>
-              <button class="icon-btn" aria-label="Add SSD">＋</button>
+              <span class="price">Start $2</span>
+              <button class="icon-btn" aria-label="Explore Electrical">→</button>
             </div>
           </article>
 
           <article class="card tilt reveal">
-            <div class="card__badge">Bundle</div>
-            <h3>IoT Starter Lab</h3>
-            <p>Sensors, microcontroller, wires, and quick labs.</p>
+            <div class="card__badge">Seasonal</div>
+            <h3>Lawn & Garden</h3>
+            <p>Hoses, soil, planters, shears, pest control.</p>
             <ul class="bullets">
-              <li>Beginner friendly</li>
-              <li>Mini projects</li>
-              <li>Reusable parts</li>
+              <li>Sprinklers</li>
+              <li>Fertilizer</li>
+              <li>Outdoor lighting</li>
             </ul>
             <div class="card__foot">
-              <span class="price">$79</span>
-              <button class="icon-btn" aria-label="Add IoT Kit">＋</button>
+              <span class="price">Start $4</span>
+              <button class="icon-btn" aria-label="Explore Garden">→</button>
+            </div>
+          </article>
+
+          <article class="card tilt reveal">
+            <div class="card__badge">Bulk</div>
+            <h3>Fasteners & Hardware</h3>
+            <p>Screws, anchors, nails, hinges, brackets.</p>
+            <ul class="bullets">
+              <li>By the pound</li>
+              <li>Organizers</li>
+              <li>Heavy-duty</li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">Start $1</span>
+              <button class="icon-btn" aria-label="Explore Fasteners">→</button>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ====== Features ====== -->
-    <section class="section section--alt" id="features">
+    <!-- ===== Deals (animated filter + "cart" micro-interactions) ===== -->
+    <section class="section section--alt" id="deals">
       <div class="container">
         <div class="split">
           <div>
-            <h2 class="reveal">Designed for builders</h2>
+            <h2 class="reveal">Weekly Deals</h2>
             <p class="reveal">
-              Smooth UI motion, crisp specs, and confident ordering.
-              Everything here is intentionally “hardware-store meets sci-fi”.
+              Tap a category to filter — cards animate, flip, and pop like a modern store app.
             </p>
 
-            <div class="feature-list">
-              <div class="feature reveal">
-                <h3>Scroll-trigger reveals</h3>
-                <p>Cards animate in only when you reach them.</p>
-              </div>
-              <div class="feature reveal">
-                <h3>3D tilt + depth</h3>
-                <p>Hover products for perspective and lighting shifts.</p>
-              </div>
-              <div class="feature reveal">
-                <h3>Canvas FX layer</h3>
-                <p>Background “space-grid” uses pseudo-3D particles.</p>
-              </div>
+            <div class="filter reveal" role="group" aria-label="Deal filters">
+              <button class="chip filter-btn is-active" data-filter="all">All</button>
+              <button class="chip filter-btn" data-filter="tools">Tools</button>
+              <button class="chip filter-btn" data-filter="paint">Paint</button>
+              <button class="chip filter-btn" data-filter="plumbing">Plumbing</button>
+              <button class="chip filter-btn" data-filter="electrical">Electrical</button>
             </div>
           </div>
 
           <div class="panel reveal">
-            <h3 class="panel__title">Build Compatibility Checker (Mock)</h3>
+            <h3 class="panel__title">Quick Cart (Mock)</h3>
             <div class="panel__row">
-              <label>Platform</label>
-              <select id="platformSelect">
-                <option>Desktop</option>
-                <option>Laptop</option>
-                <option>IoT / Embedded</option>
-              </select>
+              <span>Items</span>
+              <strong id="cartCount">0</strong>
             </div>
             <div class="panel__row">
-              <label>Budget</label>
-              <input id="budgetRange" type="range" min="200" max="2500" value="900"/>
-              <span id="budgetLabel" class="chip">$900</span>
+              <span>Estimated total</span>
+              <strong id="cartTotal">$0</strong>
             </div>
-            <div class="panel__row">
-              <label>Goal</label>
-              <select id="goalSelect">
-                <option>Gaming</option>
-                <option>Editing</option>
-                <option>Office</option>
-                <option>Lab / Learning</option>
-              </select>
+            <button class="btn btn--ghost" id="clearCart">Clear</button>
+            <p class="panel__note" id="cartNote" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="grid deals" id="dealGrid">
+          <article class="deal-card tilt reveal" data-cat="tools" data-price="19">
+            <div class="deal-card__front">
+              <div class="card__badge">Tools</div>
+              <h3>16oz Claw Hammer</h3>
+              <p>Balanced grip + smooth swing for everyday jobs.</p>
+              <div class="deal-card__foot">
+                <span class="price">$19</span>
+                <button class="icon-btn add-btn" aria-label="Add hammer">＋</button>
+              </div>
             </div>
-            <button class="btn btn--ghost" id="mockCheckBtn">Run Check</button>
-            <p class="panel__note" id="mockResult" aria-live="polite"></p>
+            <div class="deal-card__back">
+              <h4>Tip</h4>
+              <p>Use a scrap board under the nail head to protect trim.</p>
+            </div>
+          </article>
+
+          <article class="deal-card tilt reveal" data-cat="paint" data-price="24">
+            <div class="deal-card__front">
+              <div class="card__badge">Paint</div>
+              <h3>Interior Primer (1 gal)</h3>
+              <p>Better coverage, fewer coats, cleaner finish.</p>
+              <div class="deal-card__foot">
+                <span class="price">$24</span>
+                <button class="icon-btn add-btn" aria-label="Add primer">＋</button>
+              </div>
+            </div>
+            <div class="deal-card__back">
+              <h4>Tip</h4>
+              <p>Prime patched walls so paint doesn’t flash a different sheen.</p>
+            </div>
+          </article>
+
+          <article class="deal-card tilt reveal" data-cat="plumbing" data-price="11">
+            <div class="deal-card__front">
+              <div class="card__badge">Plumbing</div>
+              <h3>PTFE Thread Tape</h3>
+              <p>Seal threaded joints to prevent drips and leaks.</p>
+              <div class="deal-card__foot">
+                <span class="price">$11</span>
+                <button class="icon-btn add-btn" aria-label="Add tape">＋</button>
+              </div>
+            </div>
+            <div class="deal-card__back">
+              <h4>Tip</h4>
+              <p>Wrap clockwise so the tape doesn’t unwind when tightening.</p>
+            </div>
+          </article>
+
+          <article class="deal-card tilt reveal" data-cat="electrical" data-price="8">
+            <div class="deal-card__front">
+              <div class="card__badge">Electrical</div>
+              <h3>Voltage Tester</h3>
+              <p>Quick checks before you work — stay safe.</p>
+              <div class="deal-card__foot">
+                <span class="price">$8</span>
+                <button class="icon-btn add-btn" aria-label="Add tester">＋</button>
+              </div>
+            </div>
+            <div class="deal-card__back">
+              <h4>Tip</h4>
+              <p>Always test on a known live source first to confirm it works.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="reveal">In-Store Services</h2>
+          <p class="reveal">Local hardware stores win on help — so we make that the highlight.</p>
+        </div>
+
+        <div class="grid services">
+          <div class="service reveal">
+            <div class="service__icon" aria-hidden="true">🔑</div>
+            <h3>Key Cutting</h3>
+            <p>Standard keys made fast with clean copies.</p>
+          </div>
+          <div class="service reveal">
+            <div class="service__icon" aria-hidden="true">🎨</div>
+            <h3>Paint Match</h3>
+            <p>Bring a sample — we’ll match color and finish.</p>
+          </div>
+          <div class="service reveal">
+            <div class="service__icon" aria-hidden="true">🧰</div>
+            <h3>Tool Rental</h3>
+            <p>Rent big tools for the job, return when done.</p>
+          </div>
+          <div class="service reveal">
+            <div class="service__icon" aria-hidden="true">📦</div>
+            <h3>Order Pickup</h3>
+            <p>Curbside pickup for quick in-and-out runs.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ====== Build Guides ====== -->
-    <section class="section" id="builds">
+    <!-- ===== Project Ideas (animated steps) ===== -->
+    <section class="section section--alt" id="projects">
       <div class="container">
         <div class="section__head">
-          <h2 class="reveal">Build Guides</h2>
-          <p class="reveal">Quick paths from parts to performance.</p>
+          <h2 class="reveal">DIY Project Ideas</h2>
+          <p class="reveal">Simple upgrades that make your space feel brand new.</p>
         </div>
 
         <div class="timeline">
           <div class="step reveal">
             <div class="step__num">01</div>
             <div class="step__body">
-              <h3>Pick a platform</h3>
-              <p>Desktop, embedded, or toolbench setup — choose your base.</p>
+              <h3>Fix a leaky faucet</h3>
+              <p>Swap washers or cartridges — save water, stop the drip.</p>
             </div>
           </div>
           <div class="step reveal">
             <div class="step__num">02</div>
             <div class="step__body">
-              <h3>Balance power & cooling</h3>
-              <p>Match heat output to airflow and cooling capacity.</p>
+              <h3>Refresh a room with paint</h3>
+              <p>Primer + two coats, clean tape lines, pro finish.</p>
             </div>
           </div>
           <div class="step reveal">
             <div class="step__num">03</div>
             <div class="step__body">
-              <h3>Optimize storage & reliability</h3>
-              <p>Fast storage is nice — consistent storage is better.</p>
+              <h3>Upgrade outlets/switches</h3>
+              <p>Modern look + smoother operation (safety first).</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ====== FAQ ====== -->
-    <section class="section section--alt" id="faq">
-      <div class="container">
-        <div class="section__head">
-          <h2 class="reveal">FAQ</h2>
-          <p class="reveal">Tap to expand (animated accordion).</p>
-        </div>
-
-        <div class="faq">
-          <button class="faq__q reveal" aria-expanded="false">
-            Do you ship internationally?
-            <span class="faq__icon" aria-hidden="true">⌄</span>
-          </button>
-          <div class="faq__a" role="region">
-            Yes — international shipping is available for most items. Rates depend on region and weight.
-          </div>
-
-          <button class="faq__q reveal" aria-expanded="false">
-            Are these prices real?
-            <span class="faq__icon" aria-hidden="true">⌄</span>
-          </button>
-          <div class="faq__a" role="region">
-            This is a template site — pricing is placeholder. Swap in your real catalog later.
-          </div>
-
-          <button class="faq__q reveal" aria-expanded="false">
-            Can this become a real store?
-            <span class="faq__icon" aria-hidden="true">⌄</span>
-          </button>
-          <div class="faq__a" role="region">
-            Absolutely. You can connect it to Shopify, Stripe, or a custom backend. The UI is ready.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== Contact ====== -->
+    <!-- ===== Contact ===== -->
     <section class="section" id="contact">
       <div class="container">
         <div class="contact">
           <div>
-            <h2 class="reveal">Get a Quote</h2>
-            <p class="reveal">Tell us what you’re building and we’ll recommend a clean parts list.</p>
+            <h2 class="reveal">Contact & Location</h2>
+            <p class="reveal">
+              Questions about a project? Tell us what you’re working on and we’ll point you to the right aisle.
+            </p>
+
             <div class="contact__chips reveal">
-              <span class="chip">Bulk Orders</span>
-              <span class="chip">Campus Labs</span>
-              <span class="chip">Custom Builds</span>
-              <span class="chip">B2B</span>
+              <span class="chip">Mon–Sat 8–7</span>
+              <span class="chip">Sun 9–5</span>
+              <span class="chip">Curbside Pickup</span>
+              <span class="chip">Tool Rental</span>
+            </div>
+
+            <div class="location-card reveal">
+              <h3>Visit us</h3>
+              <p class="muted">
+                123 Maple Ave, Your City, NY<br/>
+                (555) 010-2020
+              </p>
+              <button class="btn btn--ghost btn--small" id="pulseBtn">Ping Store Beacon</button>
+              <p class="muted small" id="pulseNote" aria-live="polite"></p>
             </div>
           </div>
 
@@ -360,8 +442,8 @@
               <input required type="email" placeholder="you@email.com" />
             </label>
             <label>
-              What do you need?
-              <textarea required rows="4" placeholder="Example: Budget gaming PC parts list + quiet cooling"></textarea>
+              What project are you doing?
+              <textarea required rows="4" placeholder="Example: replacing a kitchen faucet + stopping a slow leak"></textarea>
             </label>
             <button class="btn" type="submit">Send</button>
             <p class="form__note" id="formNote" aria-live="polite"></p>
@@ -371,24 +453,26 @@
     </section>
   </main>
 
-  <!-- ====== Footer ====== -->
+  <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container footer__grid">
       <div>
         <div class="brand brand--footer">
-          <span class="brand__mark" aria-hidden="true">⛭</span>
-          <span class="brand__text">Forge Hardware</span>
+          <span class="brand__mark" aria-hidden="true">🛠️</span>
+          <span class="brand__text">Hammer & Hearth</span>
         </div>
-        <p class="muted">A motion-heavy hardware website template (HTML/CSS/JS).</p>
+        <p class="muted">Home hardware template with lots of motion + 3D CSS.</p>
       </div>
+
       <div class="footer__links">
-        <a href="#products">Products</a>
-        <a href="#features">Features</a>
-        <a href="#builds">Build Guides</a>
-        <a href="#contact">Quote</a>
+        <a href="#departments">Departments</a>
+        <a href="#deals">Deals</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
       </div>
+
       <div class="footer__meta">
-        <p class="muted">© <span id="year"></span> Forge Hardware</p>
+        <p class="muted">© <span id="year"></span> Hammer & Hearth</p>
         <button class="btn btn--ghost btn--small" id="toTop">Back to top ↑</button>
       </div>
     </div>
